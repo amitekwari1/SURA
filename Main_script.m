@@ -1,25 +1,17 @@
 A=double(imread('tiger.jpg'));
-pkg load image;
+%pkg load image;
 A=A/255;
 A=imresize(A,[512,512]);
 img_size=size(A);
-%imagesc(A);
-%uncomment above line to show image
-T=[];
-for i=1:32:449
-  for j=1:32:449
-    B=A(i:i+63,j:j+63,:);
-    B=reshape(B, 64*64*3, 1);
-    T=[B';T];
-  endfor
-endfor
-%initialise first 100 vectors as centroids
-W=T(1:100,:);
-max_iter=10
+%rasterscan(image,height,width,square size,step size)
+T=rasterscan(A,512,512,64,16);
 
-for i=1:max_iter
-  idx=findClosestCentroids(T,W);
-  W=computeCentroids(T, idx, 100);
-endfor
-size(W)
-%W is the 100 centroids after running k-means 10 times on T
+%initWH(T matrix, user defined 'R',gap while initial centroids(1or2), k means iterations);
+[W,H]=initWH(T,380,2,10);
+
+[C,D]=nmf(T,W,H,1e-3,10000,1000);
+Tf=C*D;
+%recreate(T matrix,square size,step size,height,width);
+Af=recreate(Tf,64,16,512,512);
+F=[Af A];
+imagesc(F);
