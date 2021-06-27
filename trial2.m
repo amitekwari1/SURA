@@ -1,6 +1,11 @@
 A=double(imread('baloon2.jpg'));
-%pkg load image;
 A=A/255;
 A=imresize(A,[512,512]);
-flag=[1,208;225,99];
-markdown2(A,flag,64,32);
+I=rgb2gray(A);
+figure
+imshow(I)
+size(I)
+T=rasterscanandnmf(I,512,512,16,1,5);
+S=sortOnBin2(T,497);
+size(S);
+%pkg load image;
