@@ -7,5 +7,4 @@ imshow(I)
 size(I)
 T=rasterscanandnmf(I,512,512,16,1,5);
 S=sortOnBin2(T,497);
-size(S);
-%pkg load image;
+%s IS YOUR REQUIRED MATRIX PARTIK
