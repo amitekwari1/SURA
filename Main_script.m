@@ -12,7 +12,7 @@ T=rasterscan(A,h,w,sq,st);
 
 %%initWH(T matrix, user defined 'R',gap while initial centroids(1or2), k means iterations);
 [W,H]=initWH(T,100,1,10);
-W(:,1)=reshape(A(1:64,1:64,:),64*64*3,1);
+%W(:,1)=reshape(A(1:64,1:64,:),64*64*3,1);
 [C,D]=nmf(T,W,H,1e-5,1000,400);
 Tf=C*D;
 [C,D]=reducedBasis(C,D,10);
