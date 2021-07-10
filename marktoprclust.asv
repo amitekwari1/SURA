@@ -1,0 +1,21 @@
+function C= marktoprclust(M,Count,r)
+    C=cell(r,1);
+    V=values(Count);
+    V=cell2mat(V);
+    [~,ind]=maxk(V,r);
+    keySet=keys(Count);
+    for i=1:r
+        curel=M(keySet{ind(i)});
+        ci=1;
+        for j=1:V(ind(i))
+            k=0;
+            while(k<4)
+                str="";
+                while(curel(ci)~=" ")
+                    str=str+curel(ci);
+                end
+                C{i}=[C{i};str2double(str)];
+            end
+        end
+    end
+end
