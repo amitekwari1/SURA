@@ -13,7 +13,9 @@ sq=16;
 st=1;
 Q=rasterscanandnmf(I,h,w,sq,st,4);
 S=SortBaskets(Q);
+%%
 flag=detectinBaskets(S,sq,1,1,(w-sq)/st +1,Q);
+%%
 [M,Count]=shiftvector(flag);
 C=marktoprclust(M,Count,60);
 marksim(A,C,sq);
